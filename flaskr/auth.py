@@ -36,7 +36,7 @@ def register():
 
     return render_template('auth/register.html')
 
-@db.route('/login', methods=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -71,7 +71,7 @@ def load_logged_in_user():
             'SELECT * FROM user WHERE id = ?', (user_id)
         ).fetchone()
 
-@dp.route('/logout')
+@bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
