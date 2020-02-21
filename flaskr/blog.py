@@ -17,7 +17,7 @@ def index():
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
-@bp.route('/create', methods=('GET', 'POSTS'))
+@bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
@@ -66,7 +66,7 @@ def update(id):
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
-        error = Error
+        error = None
 
         if not title:
             error = 'Title is required'
